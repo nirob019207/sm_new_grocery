@@ -5,7 +5,7 @@ export const ProductTabs = ({ description }) => {
     <div className="mt-12">
       <ul className="flex border-b">
         <li className="mr-6">
-          <button className="text-lg px-4 py-2 border-b-2 border-orange-500">
+          <button className="text-lg px-4 py-2 border-b-2 text-white rounded-xl bg-green-500">
             Description
           </button>
         </li>

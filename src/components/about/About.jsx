@@ -1,5 +1,5 @@
 import React from 'react';
-import about from '../../assets/about.png';
+import about from '../../assets/image.jpg';
 
 export const About = () => {
   const aboutUs = [
@@ -23,7 +23,7 @@ export const About = () => {
             <img
               src={item.image}
               alt={item.title}
-              className="w-full h-auto rounded-lg shadow-lg"
+              className="w-3/4 h-auto rounded-lg shadow-lg"
             />
           </div>
           {/* Left Section: Text */}
