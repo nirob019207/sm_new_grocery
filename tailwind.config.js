@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme'); // Use CommonJS require
+import defaultTheme from 'tailwindcss/defaultTheme';
 
-module.exports = {
-  content: ['./src/**/*.{html,js,jsx,ts,tsx}'], // Add paths to your content files
+export default {
+  content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -10,13 +10,12 @@ module.exports = {
         'green-title': '#749B3F',
         'image_bac': '#F4F6F6',
       },
-     
       container: {
-        center: true, // Center the container
-        padding: '1rem', // Apply 1rem padding on all screens
+        center: true,
+        padding: '1rem',
         screens: {
-          xl: '1200px', // Set max-width for 'xl' to 1200px
-          '2xl': '1400px', // Set max-width for '2xl' to 1400px
+          xl: '1200px',
+          '2xl': '1400px',
         },
       },
     },
