@@ -1,14 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = require('tailwindcss/defaultTheme'); // Import defaultTheme
+const defaultTheme = require('tailwindcss/defaultTheme'); // Use CommonJS require
 
-export default {
+module.exports = {
   content: ['./src/**/*.{html,js,jsx,ts,tsx}'], // Add paths to your content files
   theme: {
     extend: {
       colors: {
-        'dark-bg': '#212337', 
-        'green-title':'#749B3F',
-        'image_bac':'#F4F6F6'
+        'dark-bg': '#212337',
+        'green-title': '#749B3F',
+        'image_bac': '#F4F6F6',
       },
       fontFamily: {
         primary: ['Montserrat', 'sans-serif', ...defaultTheme.fontFamily.sans], // Adding Montserrat as the primary font
