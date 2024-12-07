@@ -1,5 +1,5 @@
 import React from 'react';
-import about from '../../assets/image.jpg';
+import about from '../../assets/Image.jpg';
 
 export const About = () => {
   const aboutUs = [
