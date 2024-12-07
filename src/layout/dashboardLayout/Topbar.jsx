@@ -1,12 +1,14 @@
 import React from 'react'
-import { FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
+import { FaBell, FaSearch } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../store/api/auth/authSlice';
-
+import { useNavigate } from 'react-router-dom';
 
 export const Topbar = () => {
+  const navigate = useNavigate(); // Correctly using useNavigate hook
   const dispatch=useDispatch()
   const handleLogout=()=>{
+    navigate('/')
     dispatch(logOut())
     localStorage.clear()
   }
@@ -24,7 +26,7 @@ export const Topbar = () => {
       </div>
       <div className="flex items-center gap-4">
         <FaBell size={20} className="text-gray-600 cursor-pointer" />
-        <FaUserCircle size={24} className="text-gray-600 cursor-pointer" onClick={handleLogout} />
+        <div  onClick={handleLogout} className='bg-green-800 text-white px-4 py-2 rounded-lg'>Logut</div>
       </div>
     </div>
   </div>

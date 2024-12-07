@@ -100,7 +100,7 @@ export const Topbar2 = () => {
               <li>
                 <button
                   onClick={toggleModal}
-                  className="text-lg text-black px-3 py-[5px] border-[2px]"
+                  className="text-lg text-black px-3 py-[3px] rounded-xl border-[2px]"
                 >
                   Sign In
                 </button>

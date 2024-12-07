@@ -23,7 +23,7 @@ export const Topbar = () => {
 
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat min-h-screen font-primary"
+      className="bg-cover bg-center bg-no-repeat min-h-screen font-primary "
       style={{ backgroundImage: `url(${hero})` }}
     >
       <div className="container">
@@ -101,7 +101,7 @@ export const Topbar = () => {
               <li>
                 <button
                   onClick={toggleModal}
-                  className="text-lg text-white px-3 py-[5px] border-[2px]"
+                  className="text-lg text-white px-3 py-[3px] rounded-lg border-[2px]"
                 >
                   Sign In
                 </button>

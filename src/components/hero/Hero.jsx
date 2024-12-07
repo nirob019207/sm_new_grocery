@@ -31,18 +31,18 @@ const Hero = () => {
   <div className="bg-gray-100 h-[160px] flex items-center lg:w-auto w-full justify-between gap-8 px-6 rounded-lg shadow-lg  ">
     {/* Text Section */}
     <div className="text-left">
-      <p className="text-sm text-green-700 bg-green-100 p-1 inline-block my-1 font-medium">Special Offer</p>
-      <p className="text-2xl font-bold text-gray-800">Fresh Salad</p>
+      <p className="lg:text-sm text-[12px] text-green-700 bg-green-100 p-1 inline-block my-1 font-medium">Special Offer</p>
+      <p className="lg:text-2xl text-xl  font-bold text-gray-800">Fresh Salad</p>
       <p className="text-lg text-green-500">
         Up to <span className="text-black font-semibold">70%</span> off
       </p>
-      <p className="text-sm text-bold text-white  bg-green-600 rounded-full inline-block py-1.5 px-2 my-3">
+      <p className="lg:text-sm text-[12px] text-bold text-white  bg-green-600 rounded-full inline-block py-1.5 px-2 my-3">
         Code: <span className="text-orange-500 font-bold">Fresh25</span>
       </p>
     </div>
     {/* Image Section */}
     <div className="border-4 border-orange-500 rounded-full ">
-      <img src={fresh} alt="Fresh Salad" className="h-24 w-24 rounded-full object-cover" />
+      <img src={fresh} alt="Fresh Salad" className="lg:h-24 lg:w-24 h-16 w-16 rounded-full object-cover" />
     </div>
   </div>
 </div>

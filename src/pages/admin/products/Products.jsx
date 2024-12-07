@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { useProductsQuery } from "../../../store/api/products/productsApiSlice";
-import { Link } from "react-router-dom";
+import { useProductsQuery, useDeleteProductMutation } from "../../../store/api/products/productsApiSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Products = () => {
-  const { data, error, isLoading } =useProductsQuery();
+  const { data, error, isLoading } = useProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
+  const navigate = useNavigate();
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = data?.data?.slice(indexOfFirstProduct, indexOfLastProduct);
-  
 
   const totalPages = Math.ceil(data?.data?.length / productsPerPage);
 
@@ -19,57 +20,73 @@ export const Products = () => {
     setCurrentPage(pageNumber);
   };
 
+  // Handle Delete
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        await deleteProduct(id).unwrap();
+        alert("Product deleted successfully!");
+      } catch (err) {
+        console.error("Failed to delete product:", err);
+        alert("Failed to delete product.");
+      }
+    }
+  };
+
+  // Handle Edit
+  const handleEdit = (id) => {
+    navigate(`/dashboard/editProduct/${id}`);
+  };
+
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>
-    <div className="flex items-center justify-between border-b pb-4">
-  <h2 className="text-xl font-bold text-gray-800">Product List</h2>
-  <div>
-    <Link 
-      to="/dashboard/createProducts" 
-      className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow"
-    >
-      Add Products
-    </Link>
-  </div>
-</div>
+      <div className="flex items-center justify-between border-b pb-4">
+        <h2 className="text-xl font-bold text-gray-800">Product List</h2>
+        <div>
+          <Link 
+            to="/dashboard/createProducts" 
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow"
+          >
+            Add Products
+          </Link>
+        </div>
+      </div>
 
       <table className="table-auto w-full border-collapse">
         <thead>
           <tr>
-          <th className="px-4 py-2 border">ID</th>
+            <th className="px-4 py-2 border">ID</th>
             <th className="px-4 py-2 border">Name</th>
             <th className="px-4 py-2 border">Price</th>
             <th className="px-4 py-2 border">Stock</th>
-            {/* <th className="px-4 py-2 border">Images</th> */}
             <th className="px-4 py-2 border">Actions</th>
           </tr>
         </thead>
         <tbody>
           {currentProducts?.map((product) => (
-          <tr key={product.id}>
-          <td className="px-4 py-2 border">{product.id}</td>
-          <td className="px-4 py-2 border">{product.productName}</td>
-          <td className="px-4 py-2 border">${product.price.toFixed(2)}</td>
-          <td className="px-4 py-2 border">{product.stock}</td>
-         
-          <td className="px-4 py-2 border">
-            <button
-              onClick={() => handleEdit(product.id)}
-              className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => handleDelete(product.id)}
-              className="bg-red-500 text-white px-4 py-2 rounded"
-            >
-              Delete
-            </button>
-          </td>
-        </tr>
+            <tr key={product.id}>
+              <td className="px-4 py-2 border">{product.id}</td>
+              <td className="px-4 py-2 border">{product.productName}</td>
+              <td className="px-4 py-2 border">${product.price.toFixed(2)}</td>
+              <td className="px-4 py-2 border">{product.stock}</td>
+              <td className="px-4 py-2 border">
+                <button
+                  onClick={() => handleEdit(product.id)}
+                  className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(product.id)}
+                  className="bg-red-500 text-white px-4 py-2 rounded"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>
